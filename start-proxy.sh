@@ -2,7 +2,7 @@
 
 set -xueo pipefail
 
-env=~/.local/.env-litellm-proxy
+env=~/.local/.env.litellm.proxy
 
 docker rm -f litellm
 
@@ -18,6 +18,7 @@ else
 fi
 
 
+
 docker run -d  \
     -v $(pwd)/config.yaml:/app/config.yaml \
     -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
@@ -25,7 +26,7 @@ docker run -d  \
     -e AWS_REGION=$AWS_REGION \
     -p 4000:4000 \
     --name litellm \
-    ghcr.io/berriai/litellm:main-latest \
+    ${IMAGE:-ghcr.io/berriai/litellm:main-latest} \
     --config /app/config.yaml --detailed_debug
 
 # clear
