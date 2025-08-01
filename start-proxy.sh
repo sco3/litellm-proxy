@@ -28,7 +28,7 @@ docker run -d  \
     ghcr.io/berriai/litellm:main-latest \
     --config /app/config.yaml --detailed_debug
 
-clear
+# clear
 while true; do
    out=$(netstat -ltnp | grep -Eo ":4000\b" | head -n 1 | tr -d ' ' || echo Not yet )
    if [ "$out" == ":4000"  ]; then
