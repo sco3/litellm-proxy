@@ -7,6 +7,3 @@ model_list:
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
 general_settings:
   database_url: "postgresql://postgres:sk-1234@host.docker.internal:5432/postgres"
-      
-litellm_settings:
-  callbacks: ["prometheus"]
