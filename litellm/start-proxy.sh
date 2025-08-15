@@ -5,6 +5,7 @@ set -xueo pipefail
 env=~/.local/.env.litellm.proxy
 
 docker rm -f litellm
+docker rm -f postgres
 
 if [ ! -f $env ]; then
 	echo $env with AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION not found
@@ -17,10 +18,11 @@ else
 	source $env
 fi
 
-
+docker run --name postgres -e POSTGRES_PASSWORD=sk-1234 -p 5432:5432 -d postgres
 
 docker run -d  \
     -v $(pwd)/config.yaml:/app/config.yaml \
+    -e LITELLM_MASTER_KEY="${LITELLM_MASTER_KEY:-sk-1234}" \
     -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
     -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
     -e AWS_REGION=$AWS_REGION \

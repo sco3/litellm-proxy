@@ -7,7 +7,7 @@ time curl -s "http://localhost:${LITELLM_PORT:-4000}/chat/completions" \
     --header "Content-Type: application/json" \
     --data '
     {
-      "model": "bedrock/eu.amazon.nova-lite-v1:0",
+      "model": "bedrock/amazon.nova-lite-v1:0",
       "messages":[
         {"role": "user","content": "Can you calculate 1+2 ?"}
       ],

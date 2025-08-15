@@ -1,8 +1,12 @@
 model_list:
-model_list:
   - model_name: bedrock/*
     litellm_params:
       model: bedrock/*
       aws_region_name: os.environ/AWS_REGION
       aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
       aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
+general_settings:
+  database_url: "postgresql://postgres:sk-1234@host.docker.internal:5432/postgres"
+      
+litellm_settings:
+  callbacks: ["prometheus"]
